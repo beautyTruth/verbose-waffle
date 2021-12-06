@@ -372,6 +372,15 @@ function updateUI() {
   outcomeTotalEl.innerHTML = `<p>$</p><p>${outcome}</p>`;
 
   clearElement([expenseList, incomeList, allList]);
+
+  ENTRY_LIST.forEach((entry, index) => {
+    if (entry.type === "expense") {
+      showEntry(expenseList, entry.type, entry.title, entry.amount, index);
+    } else if (entry.type === "income") {
+      showEntry(incomeList, entry.type, entry.title, entry.amount, index);
+    }
+    showEntry(allList, entry.type, entry.title, entry.amount, index);
+  });
 }
 
 // the show entry function
