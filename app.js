@@ -312,6 +312,33 @@ allBtn.addEventListener("click", () => {
   inactive([incomeBtn, expenseBtn]);
 });
 
+// add expense event listener
+addExpense.addEventListener("click", budgetOut);
+
+// add income event listener
+addIncome.addEventListener("click", budgetIn);
+
+// add expense or add income ENTER key event listener
+document.addEventListener("keypress", (e) => {
+  if (e.key !== "Enter") return;
+  budgetOut(e);
+  budgetIn(e);
+});
+
+// budget out function
+function budgetOut(e) {
+  e.preventDefault();
+  if (!expenseTitle.value || !expenseAmount.value) return;
+
+  let expense = {
+    type: "expense",
+    title: expenseTitle.value,
+    amount: parseInt(expenseAmount.value),
+  };
+  ENTRY_LIST.push(expense);
+  console.log(typeof expense.amount);
+}
+
 // the show function
 
 function show(element) {
