@@ -284,3 +284,58 @@ const expenseAmount = document.querySelector("#expense-amount-input");
 let ENTRY_LIST = [];
 let [balance, income, outcome] = [0, 0, 0];
 let [deleteIcon, editIcon] = ["fas fa-trash", "far fa-edit"];
+
+// expense button expenseBtn event listener
+
+expenseBtn.addEventListener("click", () => {
+  show(expenseEl);
+  hide([incomeEl, allList]);
+  active(expenseBtn);
+  inactive([incomeBtn, allBtn]);
+});
+
+// income button incomeBtn event listener
+
+incomeBtn.addEventListener("click", () => {
+  show(incomeEl);
+  hide([expenseEl, allList]);
+  active(incomeBtn);
+  inactive([expenseBtn, allBtn]);
+});
+
+// all button allBtn event listener
+
+allBtn.addEventListener("click", () => {
+  show(allList);
+  hide([incomeEl, expenseEl]);
+  active(allBtn);
+  inactive([incomeBtn, expenseBtn]);
+});
+
+// the show function
+
+function show(element) {
+  element.classList.remove("hide");
+}
+
+// the hide function
+
+function hide(elements) {
+  elements.forEach((element) => {
+    element.classList.add("hide");
+  });
+}
+
+// the active function
+
+function active(element) {
+  element.classList.add("active");
+}
+
+// the inactive function
+
+function inactive(elements) {
+  elements.forEach((element) => {
+    element.classList.remove("active");
+  });
+}
