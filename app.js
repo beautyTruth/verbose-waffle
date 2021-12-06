@@ -336,7 +336,28 @@ function budgetOut(e) {
     amount: parseInt(expenseAmount.value),
   };
   ENTRY_LIST.push(expense);
-  console.log(typeof expense.amount);
+
+  updateUI();
+  clearInput([expenseTitle, expenseAmount]);
+}
+
+// the budget in function
+function budgetIn(e) {
+  e.preventDefault();
+  if (!incomeTitle.value || !incomeAmount.value) return;
+
+  let income = {
+    type: "income",
+    title: incomeTitle.value,
+    amount: parseFloat(incomeAmount.value),
+  };
+  ENTRY_LIST.push(income);
+
+  console.log(income);
+  console.log(typeof income.amount);
+
+  updateUI();
+  clearInput([incomeTitle, incomeAmount]);
 }
 
 // the show function
