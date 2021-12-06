@@ -374,6 +374,26 @@ function updateUI() {
   clearElement([expenseList, incomeList, allList]);
 }
 
+// the show entry function
+function showEntry(list, type, title, amount, id) {
+  const entry = `<li id="${id}" class="${type}">
+                    <div class="entry">${title}: $${amount}</div>
+                    <div>
+                      <i class="far fa-edit"></i>
+                      <i class="fas fa-trash"></i>
+                    </div>
+                </li>`;
+  const position = "afterbegin";
+  list.insertAdjacentHTML(position, entry);
+}
+
+// clearElement function
+function clearElement(elements) {
+  elements.forEach((element) => {
+    element.innerHTML = "";
+  });
+}
+
 // the clearInput function
 
 function clearInput(inputs) {
