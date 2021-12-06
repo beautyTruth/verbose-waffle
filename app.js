@@ -254,7 +254,7 @@ my code below
 
 const balanceEl = document.querySelector(".balance .value");
 const incomeTotalEl = document.querySelector(".income-total");
-const outcomeTotalEl = document.querySelector(".expense-total");
+const outcomeTotalEl = document.querySelector(".outcome-total");
 const incomeEl = document.querySelector("#income-tracker");
 const expenseEl = document.querySelector("#expense-tracker");
 const allEl = document.querySelector("#all");
@@ -362,9 +362,16 @@ function budgetIn(e) {
 function updateUI() {
   income = calculateTotal("income", ENTRY_LIST);
   outcome = calculateTotal("expense", ENTRY_LIST);
-  balance = calculateBalance(income, outcome);
+  balance = Math.abs(calculateBalance(income, outcome));
 
-  console.log([balance, income, outcome]);
+  let sign = income >= outcome ? "$" : "-$";
+
+  // updating the UI
+  balanceEl.innerHTML = `<p>${sign}</p><p>${balance}</p>`;
+  incomeTotalEl.innerHTML = `<p>$</p><p>${income}</p>`;
+  outcomeTotalEl.innerHTML = `<p>$</p><p>${outcome}</p>`;
+
+  clearElement([expenseList, incomeList, allList]);
 }
 
 // the clearInput function
