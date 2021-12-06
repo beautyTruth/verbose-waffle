@@ -353,11 +353,44 @@ function budgetIn(e) {
   };
   ENTRY_LIST.push(income);
 
-  console.log(income);
-  console.log(typeof income.amount);
-
   updateUI();
   clearInput([incomeTitle, incomeAmount]);
+}
+
+// the updateUI function
+
+function updateUI() {
+  income = calculateTotal("income", ENTRY_LIST);
+  outcome = calculateTotal("expense", ENTRY_LIST);
+  balance = calculateBalance(income, outcome);
+
+  console.log([balance, income, outcome]);
+}
+
+// the clearInput function
+
+function clearInput(inputs) {
+  inputs.forEach((input) => {
+    input.value = "";
+  });
+}
+
+// the calculate total function
+
+function calculateTotal(type, list) {
+  let sum = 0;
+  list.forEach((entry) => {
+    if (entry.type === type) {
+      sum += entry.amount;
+    }
+  });
+  return sum;
+}
+
+// the calculate balance function
+
+function calculateBalance(income, outcome) {
+  return income - outcome;
 }
 
 // the show function
