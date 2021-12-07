@@ -381,6 +381,8 @@ function updateUI() {
     }
     showEntry(allList, entry.type, entry.title, entry.amount, index);
   });
+
+  updateChart(income, outcome);
 }
 
 // the show entry function
