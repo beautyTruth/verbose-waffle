@@ -261,7 +261,7 @@ const allEl = document.querySelector("#all");
 const incomeList = document.querySelector("#income-tracker .list");
 const expenseList = document.querySelector("#expense-tracker .list");
 const allList = document.querySelector("#all .list");
-const lists = document.querySelector(".list");
+const lists = document.querySelectorAll(".list");
 
 // all the TABS
 
@@ -321,6 +321,20 @@ addExpense.addEventListener("click", budgetOut);
 
 // add income event listener
 addIncome.addEventListener("click", budgetIn);
+
+// lists event listeners
+
+lists.forEach((list) => {
+  list.addEventListener("click", function (e) {
+    // console.log(e.target.localName);
+    // console.log(e.target.parentNode.parentNode);
+    // console.log(e.target.attributes.class.value);
+    if (e.target.localName !== "i") return;
+    let targetBtn = e.currentTarget.attributes.class.value;
+    let entry = e.target.parentNode.parentNode;
+    let targetId = entry.attributes.id.value;
+  });
+});
 
 // add expense or add income ENTER key event listener
 document.addEventListener("keypress", (e) => {
