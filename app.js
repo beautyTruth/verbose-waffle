@@ -281,9 +281,13 @@ const expenseAmount = document.querySelector("#expense-amount-input");
 
 // our NECESSARY VARIABLES
 
-let ENTRY_LIST = [];
+// let ENTRY_LIST = [];
+let ENTRY_LIST;
 let [balance, income, outcome] = [0, 0, 0];
 let [deleteIcon, editIcon] = ["fas fa-trash", "far fa-edit"];
+
+ENTRY_LIST = JSON.parse(localStorage.getItem("entry-list")) || [];
+updateUI();
 
 // expense button expenseBtn event listener
 
@@ -383,6 +387,8 @@ function updateUI() {
   });
 
   updateChart(income, outcome);
+
+  localStorage.setItem("entry-list", JSON.stringify(ENTRY_LIST));
 }
 
 // the show entry function
