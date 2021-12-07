@@ -330,11 +330,48 @@ lists.forEach((list) => {
     // console.log(e.target.parentNode.parentNode);
     // console.log(e.target.attributes.class.value);
     if (e.target.localName !== "i") return;
-    let targetBtn = e.currentTarget.attributes.class.value;
+
+    let targetBtn = e.target.attributes.class.value;
     let entry = e.target.parentNode.parentNode;
     let targetId = entry.attributes.id.value;
+
+    if (targetBtn === editIcon) {
+      editEntry(targetId);
+    } else if (targetBtn === deleteIcon) {
+      deleteEntry(targetId);
+    }
   });
 });
+
+// the editEntry function
+
+function editEntry(targetId) {
+  // console.log(ENTRY_LIST[targetId]);
+  // console.log(ENTRY_LIST[targetId].amount);
+  // console.log(ENTRY_LIST[targetId].title);
+  // console.log(ENTRY_LIST[targetId].type);
+
+  let targetType = ENTRY_LIST[targetId].type;
+  let targetAmount = ENTRY_LIST[targetId].amount;
+  let targetTitle = ENTRY_LIST[targetId].title;
+
+  if (targetType === "income") {
+    incomeAmount.value = targetAmount;
+    incomeTitle.value = targetTitle;
+  } else if (targetType === "expense") {
+    expenseAmount.value = targetAmount;
+    expenseTitle.value = targetTitle;
+  }
+
+  deleteEntry(targetId);
+}
+
+// delete entry function
+
+function deleteEntry(targetId) {
+  ENTRY_LIST.splice(targetId, 1);
+  updateUI();
+}
 
 // add expense or add income ENTER key event listener
 document.addEventListener("keypress", (e) => {
